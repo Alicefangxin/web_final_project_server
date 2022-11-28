@@ -1,10 +1,21 @@
 import express from "express";
 import cors from "cors";
-import mongoose, { mongo } from "mongoose";
+import UsersController from "./users/users-controller.js";
+import mongoose from "mongoose";
 
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000,
+  autoIndex: false, // Don't build indexes
+  maxPoolSize: 10, // Maintain up to 10 socket connections
+  socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+  family: 4, // Use IPv4, skip trying IPv6
+};
 const app = express();
 app.use(cors());
 // change to MONGODB_STRING later
-mongoose.connect("mongodb://localhost:27017/r8Myprof");
-
+mongoose.connect("mongodb://localhost:27017/r8Myprof", options);
+app.use(express.json());
+UsersController(app);
 app.listen(process.env.PORT || 4000);
