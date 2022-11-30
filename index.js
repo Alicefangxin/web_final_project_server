@@ -15,11 +15,11 @@ const options = {
 };
 const app = express();
 
-const DB_CONNECT_CRED =
-  process.env.DB_CONNECT_CRED || "mongodb://localhost:27017/r8Myprof";
-mongoose.connect(DB_CONNECT_CRED, options);
+// const DB_CONNECT_CRED =
+//   process.env.DB_CONNECT_CRED || "mongodb://localhost:27017/r8Myprof";
+// mongoose.connect(DB_CONNECT_CRED, options);
 app.use(cors());
 app.use(express.json());
-UsersController(app);
+// UsersController(app);
 ProfessorsController(app);
 app.listen(process.env.PORT || 4000);
