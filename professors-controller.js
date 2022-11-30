@@ -8,8 +8,11 @@ const ProfessorsController = (app) => {
     const findAllProfessors = async (req, res) => {
         const name = req.query.name;
         const university = req.query.university;
+        console.log(name, university);
 
         const resp = await axios.get(base_url, {params: {name: name, university: university}});
+
+        console.log(resp.data);
         res.json(resp.data);
     };
 
