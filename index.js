@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import UsersController from "./users/users-controller.js";
-import mongoose from "mongoose";
+// import UsersController from "./users/users-controller.js";
+// import mongoose from "mongoose";
 import ProfessorsController from "./professors-controller.js";
 import HelloControllers from "./hello-controllers.js";
 
