@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import UsersController from "./users/users-controller.js";
 import mongoose from "mongoose";
+import ProfessorsController from "./professors-controller.js";
 
 const options = {
   useNewUrlParser: true,
@@ -20,4 +21,5 @@ mongoose.connect(DB_CONNECT_CRED, options);
 app.use(cors());
 app.use(express.json());
 UsersController(app);
+ProfessorsController(app);
 app.listen(process.env.PORT || 4000);
