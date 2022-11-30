@@ -39,16 +39,17 @@ const UsersController = (app) => {
 
   const login = async (req, res) => {
     const credentials = req.body;
-    const existingUser = await findByCredentials(
-      credentials.username,
-      credentials.password
-    );
-    if (!existingUser) {
-      res.sendStatus(403);
-      return;
-    }
-    currentUser = existingUser;
-    res.json(existingUser);
+    console.log("login credential", credentials);
+    await findByCredentials(credentials, res);
+    // console.log("error: ", error);
+    return;
+    // if (!existingUser) {
+    //   res.sendStatus(403);
+    //   console.log("user not exist", existingUser);
+    //   return;
+    // }
+    // currentUser = existingUser;
+    // res.json(existingUser);
   };
 
   const profile = async (req, res) => {
