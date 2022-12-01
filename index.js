@@ -20,7 +20,6 @@ const app = express();
 //   process.env.DB_CONNECT_CRED || "mongodb://localhost:27017/r8Myprof";
 
 const DB_CONNECT_CRED="mongodb+srv://cs5610group8:0bDYf9oDxVdWbwSA@cluster0.6n7kodd.mongodb.net/r8MyProf?retryWrites=true&w=majority"
-
 mongoose.connect(DB_CONNECT_CRED, options);
 app.use(cors());
 app.use(express.json());
