@@ -1,6 +1,17 @@
 import usersModel from "./users-model.js";
+import bcrypt from "bcrypt";
+const saltRounds = 10;
 
-export const createUser = (user) => usersModel.create(user);
+export const createUser = (user) => {
+  const salt = bcrypt.genSaltSync(saltRounds);
+  const hash = bcrypt.hashSync(user.password, salt);
+  // console.log("newUser is creating, the hash is: ", hash);
+  const newUser = {
+    ...user,
+    password: hash,
+  };
+  usersModel.create(newUser);
+};
 
 export const register = async (user) => {
   const existingUser = await findByUsername(user.username);
@@ -17,18 +28,22 @@ export const findByUsername = (username) => usersModel.findOne({ username });
 export const findByCredentials = (credential, res) =>
   usersModel.findOne({ username: credential.username }).then((user) => {
     if (!user) {
-      console.log("aaa");
+      console.log("login: user not found error.");
       return res.status(401).json({ error: new Error("User not found!") });
     }
-    if ((credential.password = user.password)) {
-      console.log("bbb");
+    const isPasswordCorrect = bcrypt.compare(
+      credential.password,
+      user.password
+    );
+    if (isPasswordCorrect) {
+      console.log("user login succeed.");
       res.status(200).json(user);
       return;
+    } else {
+      return res.status(401).json({
+        error: new Error("Incorrect password!"),
+      });
     }
-    console.log("ccc");
-    return res.status(401).json({
-      error: new Error("Incorrect password!"),
-    });
   });
 
 export const deleteUser = (uid) => usersModel.deleteOne({ _id: uid });
