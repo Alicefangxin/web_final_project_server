@@ -65,15 +65,15 @@ const UsersController = (app) => {
     res.sendStatus(200);
   };
 
-  app.post("/users", createUser);
-  app.get("/users", findAllUsers);
-  app.delete("/users/:uid", deleteUser);
-  app.put("/users/:uid", updateUser);
+  app.post("/api/users", createUser);
+  app.get("/api/users", findAllUsers);
+  app.delete("/api/users/:uid", deleteUser);
+  app.put("/api/users/:uid", updateUser);
 
-  app.post("/register", register);
-  app.post("/login", login);
-  app.post("/profile", profile);
-  app.post("/logout", logout);
+  app.post("/api/register", register);
+  app.post("/api/login", login);
+  app.post("/api/profile", profile);
+  app.post("/api/logout", logout);
 };
 
 export default UsersController;
