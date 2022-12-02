@@ -25,6 +25,16 @@ const UsersController = (app) => {
     res.json(status);
   };
 
+  const loadUserByUsername = async (req, res) => {
+    const username = req.params.uid;
+    const existingUser = await findByUsername(username);
+    if (!existingUser) {
+      res.sendStatus(403);
+      return;
+    }
+    res.status(200).json(existingUser);
+  };
+
   const register = async (req, res) => {
     const user = req.body;
     const existingUser = await findByUsername(user.username);
@@ -62,6 +72,7 @@ const UsersController = (app) => {
 
   app.post("/users", createUser);
   app.get("/users", findAllUsers);
+  app.get("/user/:uid", loadUserByUsername);
   app.delete("/users/:uid", deleteUser);
   app.put("/users/:uid", updateUser);
 
