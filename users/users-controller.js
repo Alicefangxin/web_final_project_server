@@ -26,7 +26,7 @@ const UsersController = (app) => {
   };
 
   const loadUserByUsername = async (req, res) => {
-    const username = req.params.uid;
+    const username = req.query.username;
     const existingUser = await findByUsername(username);
     if (!existingUser) {
       res.sendStatus(403);
@@ -72,7 +72,7 @@ const UsersController = (app) => {
 
   app.post("/users", createUser);
   app.get("/users", findAllUsers);
-  app.get("/user/:uid", loadUserByUsername);
+  app.get("/oneuser", loadUserByUsername);
   app.delete("/users/:uid", deleteUser);
   app.put("/users/:uid", updateUser);
 
