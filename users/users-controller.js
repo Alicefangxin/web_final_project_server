@@ -60,11 +60,6 @@ const UsersController = (app) => {
     res.sendStatus(403);
   };
 
-  const logout = (req, res) => {
-    currentUser = null;
-    res.sendStatus(200);
-  };
-
   app.post("/users", createUser);
   app.get("/users", findAllUsers);
   app.delete("/users/:uid", deleteUser);
@@ -73,7 +68,6 @@ const UsersController = (app) => {
   app.post("/register", register);
   app.post("/login", login);
   app.post("/profile", profile);
-  app.post("/logout", logout);
 };
 
 export default UsersController;

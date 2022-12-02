@@ -31,8 +31,9 @@ export const findByCredentials = (credential, res) =>
       console.log("login: user not found error.");
       return res.status(401).json({ error: new Error("User not found!") });
     }
-    const isPasswordCorrect = bcrypt.compare(
-      credential.password,
+    console.log("user password: ", user.password);
+    const isPasswordCorrect = bcrypt.compareSync(
+      credential.passwordInput,
       user.password
     );
     if (isPasswordCorrect) {
@@ -40,9 +41,7 @@ export const findByCredentials = (credential, res) =>
       res.status(200).json(user);
       return;
     } else {
-      return res.status(401).json({
-        error: new Error("Incorrect password!"),
-      });
+      return res.status(401).json({ msg: "Invalid credencial" });
     }
   });
 
