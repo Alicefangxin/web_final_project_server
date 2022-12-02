@@ -18,10 +18,10 @@ const options = {
 const app = express();
 dotenv.config;
 
-const DB_CONNECT_CRED =
+const CONNECT_CRED =
   process.env.DB_CONNECT_CRED || "mongodb://localhost:27017/r8MyProf";
 
-mongoose.connect(DB_CONNECT_CRED, options);
+mongoose.connect(CONNECT_CRED, options);
 app.use(cors());
 app.use(express.json());
 UsersController(app);
