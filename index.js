@@ -4,6 +4,8 @@ import UsersController from "./users/users-controller.js";
 import mongoose from "mongoose";
 import ProfessorsController from "./professors/professors-controller.js";
 import HelloControllers from "./hello-controllers.js";
+import tempProfsController from "./professors/tempProfs-controller.js";
+import ReviewsController from "./reviews/reviews-controller.js";
 
 const options = {
   useNewUrlParser: true,
@@ -27,4 +29,6 @@ app.use(express.json());
 UsersController(app);
 HelloControllers(app);
 ProfessorsController(app);
+tempProfsController(app);
+ReviewsController(app);
 app.listen(process.env.PORT || 4000);
