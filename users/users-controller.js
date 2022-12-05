@@ -19,9 +19,10 @@ const UsersController = (app) => {
     res.json(status);
   };
   const updateUser = async (req, res) => {
-    const uid = req.params.uid;
+    const username = req.body.username;
     const updates = req.body;
-    const status = await dao.updateUser(uid, updates);
+    const status = await dao.updateUser(username, updates);
+    console.log("status: ", status);
     res.json(status);
   };
 
@@ -74,7 +75,8 @@ const UsersController = (app) => {
   app.get("/users", findAllUsers);
   app.get("/oneuser", loadUserByUsername);
   app.delete("/users/:uid", deleteUser);
-  app.put("/users/:uid", updateUser);
+  app.put("/profile/edit-profile", updateUser);
+  // app.put("/users/:uid", updateUser);
 
   app.post("/register", register);
   app.post("/login", login);
