@@ -1,13 +1,19 @@
 import reviewsModel from "./reviews-model.js";
 
-export const createReview = (review) =>
-    reviewsModel.create(review)
+export const createReview = async (review) => {
+    const newReview = {
+        prof: review.profID,
+        author: review.author,
+        QUALITY: review.QUALITY,
+        DIFFICULTY: review.DIFFICULTY,
+        WouldTakeAgain: review.WouldTakeAgain,
+        content: review.content
+    };
+    return await reviewsModel.create(newReview)
+}
 
-export const findReviewsByProfessor = (professor) =>
-    reviewsModel
-        .find({professor})
-        .populate('author')
-        .exec()
+export const findReviewsByProf = (profID) =>
+    reviewsModel.find({prof: profID})
 
-export const findReviewsByCourse = (course) =>
-    reviewsModel.find({course})
+export const findReviewsByAuthor = (author) =>
+    reviewsModel.find({author: author})

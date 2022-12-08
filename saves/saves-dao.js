@@ -2,7 +2,7 @@ import savesModel from "./saves-model.js";
 import bcrypt from "bcrypt";
 import usersModel from "../users/users-model.js";
 
-export const userSavesProf = async(save) => {
+export const userSavesProf = async (save) => {
     const newSave = {
         user: save.username,
         prof: save.profID

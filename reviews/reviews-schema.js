@@ -1,17 +1,11 @@
 import mongoose from "mongoose";
 const reviewsSchema = mongoose.Schema({
-        professor: String,
-        course: String,
-        QUALITY: String,
-        DIFFICULTY: String,
-        WouldTakeAgain: String,
-        date: String,
-        topic: String,
-        content: String,
-        author: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'UsersModel'
-        }
+    prof: {type: String, ref:'tempProfsModel'},
+    author: {type: String, ref: 'UsersModel'},
+    QUALITY: String,
+    DIFFICULTY: String,
+    WouldTakeAgain: String,
+    content: String
     }, { collection: "reviews" }
 );
 
