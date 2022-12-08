@@ -51,10 +51,10 @@ const SavesController = (app) => {
     }
 
     app.post('/saves', userSavesProf)
-    app.delete('users/:uid/unsaves/:pid', userUnsavesProf)
+    app.delete('/users/:uid/unsaves/:pid', userUnsavesProf)
     app.get('/saves', findAllSaves)
     app.get('/users/:uid/saves', findProfsSavedByUser)
-    app.get('/profs/:pid/saves', findUsersWhoSavedProf)
+    app.get('/tempProfs/:pid/saves', findUsersWhoSavedProf)
 }
 
 export default SavesController
