@@ -1,6 +1,4 @@
 import * as savesDao from "./saves-dao.js";
-import {findByUsername} from "../users/users-dao.js";
-import * as dao from "../users/users-dao.js";
 
 const SavesController = (app) => {
     const populate = (

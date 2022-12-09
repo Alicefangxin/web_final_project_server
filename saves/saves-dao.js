@@ -1,6 +1,4 @@
 import savesModel from "./saves-model.js";
-import bcrypt from "bcrypt";
-import usersModel from "../users/users-model.js";
 
 export const userSavesProf = async (save) => {
     const newSave = {
@@ -14,12 +12,10 @@ export const userUnsavesProf = async(uid, pid) => {
     return await savesModel.deleteOne({user: uid, prof: pid})
 }
 
-export const findProfsSavedByUser = async(username) => {
-    savesModel.find({user: username}, {user: false})
-}
+export const findProfsSavedByUser = (username) => savesModel.find({user: username}, {user: false})
 
-export const findUsersThatSaveProf = async(profID) => {
-    savesModel.find({prof: profID}, {prof: false})
-}
+
+export const findUsersThatSaveProf = (profID) => savesModel.find({prof: profID}, {prof: false})
+
 
 export const findAllSaves = async() => await savesModel.find()
