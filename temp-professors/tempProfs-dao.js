@@ -6,7 +6,7 @@ export const findAllProfs = async () => await tempProfsModel.find();
 
 export const findProfById = (profID) => tempProfsModel.findOne({profID});
 
-export const findByProfName = async (name) => await tempProfsModel.findOne({ name });
+export const findByProfName = async (name) => await tempProfsModel.find({name: name});
 
 export const findProfByAgain = (againPct) =>tempProfsModel.findOne({againPct})
 

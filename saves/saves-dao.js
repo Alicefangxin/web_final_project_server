@@ -15,11 +15,11 @@ export const userUnsavesProf = async(uid, pid) => {
 }
 
 export const findProfsSavedByUser = async(username) => {
-    return await savesModel.find({user: username}, {user: false})
+    savesModel.find({user: username}, {user: false})
 }
 
-export const findUsersThatSaveProf = async(pid) => {
-    return await savesModel.find({prof: pid}, {prof: false})
+export const findUsersThatSaveProf = async(profID) => {
+    savesModel.find({prof: profID}, {prof: false})
 }
 
 export const findAllSaves = async() => await savesModel.find()

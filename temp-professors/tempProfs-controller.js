@@ -14,14 +14,14 @@ const tempProfsController = (app) => {
     }
 
     const findProfByName = async(req, res) => {
-        const profName = req.params.name
+        const profName = req.params.firstname + " " + req.params.lastname
         const prof = await tempProfsDao.findByProfName(profName)
         res.json(prof)
     }
 
     app.get('/tempProfs', findAllProfs)
     app.get('/tempProfs/:pid', findProfById)
-    app.get('/tempProfs/:name', findProfByName)
+    app.get('/tempProfs/:firstname/:lastname', findProfByName)
 }
 
 

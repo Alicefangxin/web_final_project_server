@@ -39,22 +39,22 @@ const SavesController = (app) => {
     }
 
     const findProfsSavedByUser = async (req, res) => {
-        const uid = req.params.uid
-        const profs = await savesDao.findProfsSavedByUser(uid)
+        const username = req.params.username
+        const profs = await savesDao.findProfsSavedByUser(username)
         res.json(profs)
     }
 
     const findUsersWhoSavedProf = async (req, res) => {
-        const pid = req.params.pid
-        const users = await savesDao.findUsersThatSaveProf(pid)
+        const profID = req.params.profID
+        const users = await savesDao.findUsersThatSaveProf(profID)
         res.json(users)
     }
 
     app.post('/saves', userSavesProf)
     app.delete('/users/:uid/unsaves/:pid', userUnsavesProf)
     app.get('/saves', findAllSaves)
-    app.get('/users/:uid/saves', findProfsSavedByUser)
-    app.get('/tempProfs/:pid/saves', findUsersWhoSavedProf)
+    app.get('/users/:username/saves', findProfsSavedByUser)
+    app.get('/profs/:profID/saves', findUsersWhoSavedProf)
 }
 
 export default SavesController

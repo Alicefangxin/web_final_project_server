@@ -12,8 +12,11 @@ export const createReview = async (review) => {
     return await reviewsModel.create(newReview)
 }
 
-export const findReviewsByProf = (profID) =>
-    reviewsModel.find({prof: profID})
+export const findAllReviews = async() => {
+    return await reviewsModel.find()
+}
 
-export const findReviewsByAuthor = (author) =>
-    reviewsModel.find({author: author})
+export const findReviewsByProf = (profID) => reviewsModel.find({prof: profID})
+
+
+export const findReviewsByAuthor = (author) => reviewsModel.find({author: author})
