@@ -7,8 +7,13 @@ const ReviewsController = (app) => {
         res.json(newReview)
     }
 
+    const findAllReviews = async(req, res) => {
+        const reviews = await reviewsDao.findAllReviews()
+        res.json(reviews)
+    }
+
     const findReviewsByProf = async (req, res) => {
-        const profID = req.params.pid
+        const profID = req.params.profID
         const reviews = await reviewsDao.findReviewsByProf(profID)
         res.json(reviews)
     }
@@ -20,7 +25,8 @@ const ReviewsController = (app) => {
     }
 
     app.post('/reviews', createReview)
-    app.get('/tempProfs/:pid/reviews', findReviewsByProf)
+    app.get('/reviews', findAllReviews)
+    app.get('/profs/:profID/reviews', findReviewsByProf)
     app.get('/users/:author/reviews', findReviewsByAuthor)
 }
 

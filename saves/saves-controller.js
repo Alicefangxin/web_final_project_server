@@ -1,6 +1,4 @@
 import * as savesDao from "./saves-dao.js";
-import {findByUsername} from "../users/users-dao.js";
-import * as dao from "../users/users-dao.js";
 
 const SavesController = (app) => {
     const populate = (
@@ -45,8 +43,8 @@ const SavesController = (app) => {
     }
 
     const findUsersWhoSavedProf = async (req, res) => {
-        const pid = req.params.pid
-        const users = await savesDao.findUsersThatSaveProf(pid)
+        const profID = req.params.profID
+        const users = await savesDao.findUsersThatSaveProf(profID)
         res.json(users)
     }
 
@@ -54,7 +52,7 @@ const SavesController = (app) => {
     app.delete('/users/:uid/unsaves/:pid', userUnsavesProf)
     app.get('/saves', findAllSaves)
     app.get('/users/:username/saves', findProfsSavedByUser)
-    app.get('/tempProfs/:pid/saves', findUsersWhoSavedProf)
+    app.get('/profs/:profID/saves', findUsersWhoSavedProf)
 }
 
 export default SavesController
