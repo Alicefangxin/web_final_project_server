@@ -1,4 +1,5 @@
 import * as savesDao from "./saves-dao.js";
+import axios from "axios";
 
 const SavesController = (app) => {
     const populate = (
@@ -39,7 +40,14 @@ const SavesController = (app) => {
     const findProfsSavedByUser = async (req, res) => {
         const username = req.params.username
         const profs = await savesDao.findProfsSavedByUser(username)
-        res.json(profs)
+
+        const resp = await axios.get("https://rateprof-api.herokuapp.com/allprofessors", {params: {name: "", university: "neu"}});
+        let all_profs = resp.data
+        let ids = []
+        profs.map((prof) => {
+            ids.push(parseInt(prof.prof, 10))
+        })
+        res.json(all_profs.filter(prof => ids.indexOf(prof._id) > -1))
     }
 
     const findUsersWhoSavedProf = async (req, res) => {
